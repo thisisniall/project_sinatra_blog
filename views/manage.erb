@@ -1,0 +1,12 @@
+<h1> Change your information </h1>
+
+Username: <% @user.username %>
+
+<form method='POST' action='/manage'>
+	<label for="username">Username</label> <input type="text" name="username" required>
+	<label for="password">Password</label> <input type="password" name="password" required>
+	<label for="fname">First Name</label> <input type="text" name="fname" required>	
+	<label for="lname">Last Name</label> <input type="text" name="lname" required>	
+	<label for="email">Email</label> <input type="text" name="email" required>
+	<input type="submit">
+</form>

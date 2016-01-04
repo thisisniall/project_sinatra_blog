@@ -1,0 +1,21 @@
+Username: <%= @user.username %>
+First Name: <%= @user.fname %>
+Last Name: <%= @user.lname %>
+Email <%= @user.email %>
+
+<!-- Write a Post (Form) -->
+
+<!-- Last 10 Posts by Me (Feed) -->
+
+<!-- Last 10 Posts by My Peoples (Feed) -->
+
+form
+title
+content
+
+
+<form method='POST' action='/newpost'>
+	<label for="title">Title</label> <input type="text" name="title" required>	
+	<label for="content">Content</label> <input type="text" name="content" required>	
+	<input type="submit">
+</form>
