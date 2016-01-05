@@ -1,7 +1,10 @@
-Username: <%= @user.username %>
-First Name: <%= @user.fname %>
-Last Name: <%= @user.lname %>
-Email <%= @user.email %>
+<h2>Your information:</h2>
+<ul>
+	<li>Username: <%= @user.username %></li>
+	<li>First Name: <%= @user.fname %></li>
+	<li>Last Name: <%= @user.lname %></li>
+	<li>Email: <%= @user.email %></li>
+</ul>
 
 <!-- Write a Post (Form) -->
 
@@ -9,13 +12,42 @@ Email <%= @user.email %>
 
 <!-- Last 10 Posts by My Peoples (Feed) -->
 
-form
-title
-content
-
-
 <form method='POST' action='/newpost'>
 	<label for="title">Title</label> <input type="text" name="title" required>	
 	<label for="content">Content</label> <input type="text" name="content" required>	
 	<input type="submit">
 </form>
+
+# pseudo put the last 10 items in posts for this user in an array
+display 1 by 1 in list?
+
+<h2>Your most recent posts</h2>
+
+<!-- last 10 posts of logged in user -->
+<% Post.last(10).each do |p| %>
+	<!--if logic restricts to posts made by logged in user -->
+	<% if p.user_id == @user.id%>
+		<div class ='post'>
+			<p><strong><%= User.find(p.user_id).username %></strong>
+			<u><%= p.title %></u>
+			<%= p.content %></p>
+		</div>
+	<% end %>
+<% end %>
+
+<h2>Other people's most recent posts</h2>
+<% Post.last(10).each do |p|%>
+	<!--if logic restricts to posts NOT made by logged in user -->
+	<% if p.user_id != @user.id%>
+		<div class ='post'>
+			<p><strong><%= User.find(p.user_id).username %></strong>
+			<u><%= p.title %></u>
+			<%= p.content %></p>
+		</div>
+	<% end %>	
+<% end %>
+
+<form method='POST' action='/logout'>
+	<input type="submit" value="Log Out">
+</form>
+
