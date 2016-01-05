@@ -1,12 +1,32 @@
-<h1> Change your information </h1>
+<h1> Manage your Account </h1>
 
-Username: <% @user.username %>
+Username: <% @user.username %> - You cannot change your username!
 
 <form method='POST' action='/manage'>
-	<label for="username">Username</label> <input type="text" name="username" required>
 	<label for="password">Password</label> <input type="password" name="password" required>
-	<label for="fname">First Name</label> <input type="text" name="fname" required>	
-	<label for="lname">Last Name</label> <input type="text" name="lname" required>	
-	<label for="email">Email</label> <input type="text" name="email" required>
+	<label for="fname">First Name</label> <input type="text" name="fname" value="<%=@user.fname %>" required>	
+	<label for="lname">Last Name</label> <input type="text" name="lname" value="<%=@user.lname %>"required>	
+	<label for="email">Email</label> <input type="text" name="email" value="<%=@user.email %>"required>
 	<input type="submit">
 </form>
+
+<!-- Account Deletion -->
+<h2>Account Deletion</h2>
+<h4>Warning: This will delete all information associated with your account!</h4>
+<form method='POST' action='/deleteaccount'>
+	Please Check to Confirm Deletion: <input type='checkbox' name='confirmdelete' required>
+	<input type="submit" value='Delete My Account!'>
+</form>
+
+<!-- All Posts by User -->
+<h2>Your complete posting history</h2>
+<% Post.all.each do |p| %>
+	<!--if logic restricts to posts made by logged in user -->
+	<% if p.user_id == @user.id%>
+		<div class ='post'>
+			<p><strong><%= User.find(p.user_id).username %></strong>
+			<u><%= p.title %></u>
+			<%= p.content %></p>
+		</div>
+	<% end %>
+<% end %>

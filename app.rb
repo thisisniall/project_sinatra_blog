@@ -58,12 +58,24 @@ def current_user
 	end
 end
 
-get '/manage' do
-	erb :manage
-end
-
 post '/newpost' do
 	@newpost = Post.create(user_id: session[:user_id], title: params[:title], content: params[:content])
 	redirect '/'
 end
 
+get '/manage' do
+	@user = current_user
+	erb :manage
+end
+
+post '/manage' do
+	@user.update(password: params[:password], fname: params[:fname], lname: params[:lname], email: params[:email])
+end
+
+post '/deleteaccount' do
+	@user = current_user
+	flash[:notice] = "Your account has been deleted."
+	User.destroy(@user)
+	session.clear
+	redirect '/sign_in'
+end
