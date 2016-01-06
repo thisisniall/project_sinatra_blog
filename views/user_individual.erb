@@ -4,7 +4,8 @@ Last 10 posts by <%= @user_viewed.username %>
 <% @posts_viewed.last(10).each do |p|%>
 	<!--if logic restricts to posts NOT made by logged in user -->
 		<div class ='post'>
-			<p><strong><%= @user_viewed.username %></strong>
+			<!--p.user will bring back the user -->
+			<p><strong><%= p.user.username %></strong>
 			<u><%=p.title %></u>
 			<%= p.content %></p>
 		</div>	

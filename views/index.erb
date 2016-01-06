@@ -17,15 +17,14 @@
 
 <!-- Last 10 Posts by Me (Feed) -->
 <h2>Your most recent posts</h2>
-<% Post.last(10).each do |p| %>
+<!-- below line takes advantage of object relationships - posts belong to users!-->
+<% @user.posts.last(10).each do |p| %>
 	<!--if logic restricts to posts made by logged in user -->
-	<% if p.user_id == @user.id%>
 		<div class ='post'>
 			<p><strong><%= User.find(p.user_id).username %></strong>
 			<u><%= p.title %></u>
 			<%= p.content %></p>
 		</div>
-	<% end %>
 <% end %>
 
 <!-- Last 10 Posts by My Peoples (Feed) -->
