@@ -8,8 +8,12 @@ set :database, "sqlite3:myblogdb.sqlite3"
 enable :sessions
 
 get '/' do
-	@user = current_user
-	erb :index
+	if current_user
+		@user = current_user
+		erb :index
+	else 
+		redirect 'sign_in'
+	end
 end
 
 get '/sign_in' do
@@ -69,7 +73,13 @@ get '/manage' do
 end
 
 post '/manage' do
+	@user = current_user
 	@user.update(password: params[:password], fname: params[:fname], lname: params[:lname], email: params[:email])
+	if @user.save
+		redirect '/'
+	else 
+		redirect '/sign_in'
+	end
 end
 
 post '/deleteaccount' do
@@ -79,3 +89,11 @@ post '/deleteaccount' do
 	session.clear
 	redirect '/sign_in'
 end
+
+get '/users/:id' do
+	@user_viewed = User.find(params[:id])
+	# where necessary here - find_by would be the alternative but gives only the top result
+	@posts_viewed = Post.where(params[:user_id])
+	erb :user_individual
+end
+

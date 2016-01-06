@@ -1,0 +1,11 @@
+Last 10 posts by <%= @user_viewed.username %>
+
+<h2><%="#{@user_viewed}'s most recent posts' "%></h2>
+<% @posts_viewed.last(10).each do |p|%>
+	<!--if logic restricts to posts NOT made by logged in user -->
+		<div class ='post'>
+			<p><strong><%= @user_viewed.username %></strong>
+			<u><%=p.title %></u>
+			<%= p.content %></p>
+		</div>	
+<% end %>
