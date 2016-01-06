@@ -16,12 +16,13 @@ get '/' do
 	end
 end
 
-get '/sign_in' do
-	erb :sign_in
+post '/logout' do
+	session.clear
+	redirect '/sign_in'
 end
 
-get '/sign_up' do 
-	erb :sign_up
+get '/sign_in' do
+	erb :sign_in
 end
 
 post '/sign_in' do
@@ -47,11 +48,6 @@ post '/sign_up' do
 		flash[:alert] = "Please fill out the entire form."
 		redirect '/sign_in'
 	end	
-end
-
-post '/logout' do
-	session.clear
-	redirect '/sign_in'
 end
 
 def current_user
@@ -96,4 +92,3 @@ get '/users/:id' do
 	@posts_viewed = Post.where(params[:user_id])
 	erb :user_individual
 end
-
