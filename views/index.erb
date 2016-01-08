@@ -1,19 +1,24 @@
-<h2>Your information:</h2>
-<ul>
-	<li>Username: <%= @user.username %></li>
-	<li>First Name: <%= @user.fname %></li>
-	<li>Last Name: <%= @user.lname %></li>
-	<li>Email: <%= @user.email %></li>
-</ul>
-
-<a href='/manage'>Update your account information</a>
+<div class ="userinfo">
+	<h2>Your information:</h2>
+	<ul>
+		<li>Username: <%= @user.username %></li>
+		<li>First Name: <%= @user.fname %></li>
+		<li>Last Name: <%= @user.lname %></li>
+		<li>Email: <%= @user.email %></li>
+	</ul>
+	<a href='/manage'>Update your account information</a>
+</div>
 
 <!-- Write a Post (Form) -->
-<form method='POST' action='/newpost'>
-	<label for="title">Title</label> <input type="text" name="title" required>	
-	<label for="content">Content</label> <input type="text" name="content" required>	
-	<input type="submit">
-</form>
+<div class="newpost">
+	<h2> New Post! </h2>
+	<form method='POST' action='/newpost'>
+		<label for="title">Title: </label> <input type="text" name="title" required>
+		Content: <textarea name="content" rows=4 cols="30" required>  </textarea>
+		
+		<input type="submit">
+	</form>
+</div>
 
 <!-- Last 10 Posts by Me (Feed) -->
 <h2>Your most recent posts</h2>
@@ -21,9 +26,9 @@
 <% @user.posts.last(10).each do |p| %>
 	<!--if logic restricts to posts made by logged in user -->
 		<div class ='post'>
-			<p><strong><%= User.find(p.user_id).username %></strong>
-			<u><%= p.title %></u>
-			<%= p.content %></p>
+			<p><span class = 'usertitle'><%= User.find(p.user_id).username %></span><br>
+			<span class = 'posttitle'><%= p.title %></span><br>
+			<span class = 'postcontent'><%= p.content %></p></span>
 		</div>
 <% end %>
 
@@ -33,9 +38,9 @@
 	<!--if logic restricts to posts NOT made by logged in user -->
 	<% if p.user_id != @user.id%>
 		<div class ='post'>
-			<p><strong><%= User.find(p.user_id).username %></strong>
-			<u><%= p.title %></u>
-			<%= p.content %></p>
+			<p><span class = 'usertitle'><%= User.find(p.user_id).username %></span><br>
+			<span class = 'posttitle'><%= p.title %></span><br>
+			<span class = 'postcontent'><%= p.content %></p></span>
 		</div>
 	<% end %>	
 <% end %>
