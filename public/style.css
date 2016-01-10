@@ -44,6 +44,7 @@ input:hover,.preview-block input:focus{
     background-color: #f2f2f2;
     margin: 5px;
     padding: 5px;
+    height: 200px;
 }
 
 .userinfo h2 {
@@ -57,6 +58,27 @@ input:hover,.preview-block input:focus{
     background-color: #f2f2f2;
     margin: 5px;
     padding: 5px;
+    max-width: 400px;
+    height: 200px;
+    position: relative;
+         top: -71px;
+}
+
+.newpost label {
+    margin: 5px;
+    display: inline-block;
+    max-width: 200px;
+    float: left;
+    margin-left: 10px;
+    padding: 5px;
+}
+
+.newpost input {
+    margin: 5px;
+    display: inline-block;
+    max-width: 200px;
+    float: right;
+    margin-right: 10px;
 }
 
 .post {
@@ -89,4 +111,50 @@ input:hover,.preview-block input:focus{
     display: block;
     margin: 1px;
 /*    padding: 2px;*/
+}
+
+.signin {
+    display: block;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    max-width: 500px;
+    background-color: #f2f2f2;
+}
+
+.signin label {
+    display: block;  
+}
+
+.signup {
+    display: block;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    max-width: 500px;
+    background-color: #f2f2f2;
+}
+
+.signup label {
+    display: block; 
+}
+
+.signup label {
+    display: block; 
+}
+
+.manage {
+    display: block;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    max-width: 500px;
+    background-color: #f2f2f2;
+}
+
+.manage label {
+    display: block; 
 }

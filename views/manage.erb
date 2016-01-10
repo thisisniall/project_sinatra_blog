@@ -1,14 +1,15 @@
 <h1> Manage your Account </h1>
 
 Username: <% @user.username %> - You cannot change your username!
-
-<form method='POST' action='/manage'>
-	<label for="password">Password</label> <input type="password" name="password" required>
-	<label for="fname">First Name</label> <input type="text" name="fname" value="<%=@user.fname %>" required>	
-	<label for="lname">Last Name</label> <input type="text" name="lname" value="<%=@user.lname %>"required>	
-	<label for="email">Email</label> <input type="text" name="email" value="<%=@user.email %>"required>
-	<input type="submit">
-</form>
+<div class ='manage'>
+	<form method='POST' action='/manage'>
+		<label for="password">Password</label> <input type="password" name="password" required>
+		<label for="fname">First Name</label> <input type="text" name="fname" value="<%=@user.fname %>" required>	
+		<label for="lname">Last Name</label> <input type="text" name="lname" value="<%=@user.lname %>"required>	
+		<label for="email">Email</label> <input type="text" name="email" value="<%=@user.email %>"required>
+		<input type="submit">
+	</form>
+</div>
 
 <!-- Account Deletion -->
 <h2>Account Deletion</h2>
