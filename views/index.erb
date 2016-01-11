@@ -28,6 +28,11 @@
 			<div class = 'usertitle'><%= User.find(p.user_id).username %></div>
 			<div class = 'posttitle'><%= p.title %></div>
 			<div class = 'postcontent'><%= p.content %></div>
+			<form method='get' action="/post/<%=p.id %>">
+			<input type="submit" value="Delete">
+			</form>			
+<!-- 			<a href="/post/<%=p.id %>" name="_method" value="delete">Delete Post</a> -->
+
 		</div>
 <% end %>
 

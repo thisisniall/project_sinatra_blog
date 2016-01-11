@@ -6,6 +6,7 @@ require "./models.rb"
 set :database, "sqlite3:myblogdb.sqlite3"
 
 enable :sessions
+use Rack::MethodOverride
 
 get '/' do
 	if current_user
@@ -89,6 +90,20 @@ end
 get '/users/:id' do
 	@user_viewed = User.find(params[:id])
 	# where necessary here - find_by would be the alternative but gives only the top result
-	@posts_viewed = Post.where(params[:user_id])
 	erb :user_individual
 end
+
+#ended up using this instead of a delete route due to using a form to delete posts.
+get '/post/:id' do
+	@post = Post.find(params[:id])
+	Post.destroy(@post)
+	flash[:notice] = "A post has been deleted."
+	redirect '/'
+end
+
+# delete '/post/:id' do
+# 	@post = Post.find(params[:id])
+# 	Post.destroy(@post)
+# 	flash[:notice] = "A post has been deleted."
+# 	redirect '/'
+# end
